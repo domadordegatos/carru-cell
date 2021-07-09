@@ -1,0 +1,58 @@
+.viewport{
+    height: 500px;
+    
+}
+.viewport::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	border-radius: 10px;
+}
+
+.viewport::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.viewport::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	background-image: -webkit-gradient(linear,
+									   left bottom,
+									   left top,
+									   color-stop(0.44, rgb(101, 226, 153)),
+									   color-stop(0.72, #20c997),
+									   color-stop(0.86, #02b875));
+}
+
+@media only screen and (max-width: 700px) {
+
+	.container-x{
+		display: flow-root !important;
+	}
+	.contenedor1, .contenedor2{
+		width: 100% !important;
+	}
+	.tarjeta{
+		/* height: 170px !important; */
+	}
+	.parte3{
+		width: 10% !important;
+		/* display: -webkit-box !important; */
+		display:inline-block !important;
+	}
+	.parte1{
+		width: 40% !important;
+	}
+	.parte2{
+		width: 40% !important;
+	}
+	.botones{
+		display: none;
+	}
+	/* .boton_alinear{
+		margin-left: 20%;
+	} */
+	
+}

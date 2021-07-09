@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "carru-cell": {
+      "hosting": {
+        "carru-cell": [
+          "carru-cell"
+        ]
+      }
+    }
+  }
+}

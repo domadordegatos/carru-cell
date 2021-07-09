@@ -1,0 +1,24 @@
+
+<div class="contenedor mt-4 w-100 d-flex">
+
+    <div class="separador1 w-50 p-3">
+        <h3 style="font-family: 'Roboto', sans-serif;">Agregar categoría</h3>
+        <form class="mt-4" (ngSubmit)="onSaveCategorie()" [formGroup]="categoriasForm">
+            <div class="form-group">
+                <label>Titulo categoría</label>
+                <input type="text" class="form-control mt-3" placeholder="Desayunos..." formControlName="categoria">
+                <small id="emailHelp" class="form-text text-muted mt-2">Debes ser preciso en como quieres llamar tus categorías, puesto que si las escribes mal <strong>no</strong> aparecerán tus productos</small>
+              </div>
+              <div class="d-grid">
+                  <button class="btn btn-success btn-lg mt-3" style="border-radius: 9px;" type="submit" (click)="onSaveCategorie()">Agregarla !</button>
+              </div>
+        </form>
+    </div>
+    <div class="separador2 w-50 p-5">
+        <ul class="list-group" *ngFor="let item of categoriasList$ | async; index as i">
+            <li style="margin-top: 2px;" class="list-group-item d-flex justify-content-between d-flex align-items-center"># {{i+1}} <strong> {{item.categoria}} </strong> 
+                <button type="button" (click)="onDeleteCategorie(item.id)" class="btn btn-danger"><i class="bi bi-trash" style="margin-right: 5px;"></i>Delete</button>
+            </li>
+          </ul>
+    </div>
+</div>

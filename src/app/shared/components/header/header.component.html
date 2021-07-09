@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="font-style: italic;" *ngIf="user$ | async as user">
+    <div class="container-fluid">
+      <a class="navbar-brand" [routerLink]="['/new']" ><strong>Carru~cell</strong></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/new']" *ngIf="user$ | async as user">Create & Edit</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/register']" *ngIf="viewUser.email == 'neyderflashh@gmail.com'">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" [routerLink]="['/categories']">Categories</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li> -->
+        </ul>
+        <ul class="m-auto navbar-nav">
+            <li class="nav-item" *ngIf="user$ | async as user">
+              <i class="bi bi-envelope-open" style="font-size: 1.1rem; color: white;">
+                   {{user?.email}}
+              </i>
+            </li>
+            <li class="nav-item salir" style="margin-left: 2.5rem;" *ngIf="user$ | async as user">
+              <a class="" type="button" style="border: 1px white solid; padding: 0 0.4rem 0 0.4rem; border-radius: 5px;" (click)="onLogout()">
+                <i class="bi bi-box-arrow-left" style="font-size: 1.1rem; color: white;"> Logout</i>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

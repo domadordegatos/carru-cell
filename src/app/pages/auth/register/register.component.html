@@ -1,0 +1,27 @@
+<div class="text-center" id="body" *ngIf="viewUser.email == 'neyderflashh@gmail.com' ; else ups">
+    <main class="form-signin">
+        <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+          <img class="mb-4" width="55%" src="https://firebasestorage.googleapis.com/v0/b/formulario-179af.appspot.com/o/images_restaurant%2F0000000000000000.png?alt=media&token=c2c21f6f-024e-439b-9ab2-5f29929aea32">
+          <h1 class="h3 mb-3 fw-normal">Sign up in Carru~cell</h1>
+      
+          <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" formControlName="email">
+            <label for="floatingInput">Correo electronico</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" formControlName="password">
+            <label for="floatingPassword">Contraseña</label>
+          </div>
+          
+          <button class="w-100 mt-5 btn btn-lg btn-success" type="submit">Registrarme</button>
+          <button class="w-100 mt-1 btn btn-lg btn-danger" type="button" (click)="activateBusiness()">Activar usuario</button>
+          <p class="mt-5 mb-3 text-muted">&copy; 2021–2021</p>
+        </form>
+      </main>
+    </div>
+
+    <ng-template #ups>
+      <div  class="ups text-center d-flex justify-content-center mt-5 p-5 border border-success rounded"> 
+      <h3>Ups, no tienes acceso a esto :(</h3>
+      </div>
+    </ng-template>

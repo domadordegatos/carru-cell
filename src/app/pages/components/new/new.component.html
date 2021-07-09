@@ -1,0 +1,94 @@
+<div class="container-x d-flex">
+    <div class="contenedor1 w-50 mt-3">
+        <form style="border-radius: 15px;" class="shadow p-3 mb-5 bg-body col-md-10" (ngSubmit)="onSave()" [formGroup]="productosForm">
+            <h3>Creación</h3>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-md-4 col-form-label">Nombre Plato</label>
+                 <div class="col-sm-11"> 
+                  <input type="text" class="form-control mt-1" formControlName="nombre" [class]="isValidField('nombre')">
+                 </div>
+              </div>
+              <div class="form-group row">
+                <label for="" class="col-md-4 col-form-label">Categoría</label>
+                <div class="row">
+                  <div class="col-sm-7"> 
+                   <input type="text" class="form-control mt-1" name="categoria" disabled >
+                  </div>
+                  <div class="col-sm-4"> 
+                    <select id="inputState" class="form-control mt-1" (change)="onSelect($event)" formControlName="categoria" [class]="isValidField('categoria')">
+                      <option selected value="">Categoría...</option>
+                      <option value="{{item.categoria}}" *ngFor="let item of categoriasList$ | async">{{item.categoria}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-md-4 col-form-label">Precio</label>
+                <div class="col-sm-11">
+                <div class="input-group">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718H4zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73l.348.086z"/>
+                    </svg>
+                  </span>
+                    <input type="number" class="form-control" formControlName="precio" [class]="isValidField('precio')">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-md-4 col-form-label">Descripción</label>
+                 <div class="col-sm-11"> 
+                  <input type="text" class="form-control mt-1" formControlName="descripcion" [class]="isValidField('descripcion')">
+                 </div>
+              </div>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-md-4 col-form-label">Imagen</label>
+                 <div class="col-sm-11"> 
+                  <input type="file" class="form-control mt-1" formControlName="imagen" [class]="isValidField('imagen')" (change)="handleImage($event)">
+                 </div>
+              </div>
+              <!-- <input type="text" [value]='viewUser.email' formControlName="email" > -->
+            <div class="d-grid gap-1 col-11">
+                <button class="btn btn-success mt-5" type="submit">Agregar producto</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div class="contenedor2 w-50 mt-3">
+        <h3 class="mb-4">Gestión</h3>
+        <hr>
+      <cdk-virtual-scroll-viewport itemSize="3" class="viewport" id="list">
+
+        <div class="tarjeta d-flex w-100 mb-2 shadow" style="border-radius: 15px; height: auto;" *cdkVirtualFor="let item of productosList$ | async">
+          <div class="parte1 w-25">
+            <img style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;" src="{{item.img}}" width="100%" height="100%" alt="">
+          </div>
+          <div class="parte2 w-50" style="margin-left: 1rem;">
+            <h6 class="mt-2 mb-0">{{item.nombre}}</h6>
+            <div class="form-text mt-0">{{item.descripcion.substring(0, 40)}}...</div>
+            <button class="btn btn-sm btn-warning mb-1" style="font-size: 0.9rem; margin-top: 0.3rem; margin-right: 5px;">${{item.precio}} </button>
+            <button class="btn btn-sm btn-primary mb-1" style="font-size: 0.9rem; margin-top: 0.3rem;">{{item.categoria}} </button>
+          </div>
+          <div class="parte3 w-25 d-flex align-items-center">
+            <button class="btn-sm btn-success boton_alinear" style="font-size: 0.7rem;" (click)="onGoToEdit(item)">
+              <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+              </svg>
+              <span class="botones">Editar</span>
+              </button>
+              <button class="btn-sm btn-danger boton_alinear" style="font-size: 0.7rem;" (click)="onGoToDelete(item.id)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                </svg>
+                <span class="botones">Eliminar</span>
+                  </button>
+            </div>
+              </div>
+              
+            </cdk-virtual-scroll-viewport>
+              
+
+    </div>
+</div>

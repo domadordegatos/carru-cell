@@ -1,0 +1,15 @@
+<div class="contenedor d-flex justify-content-center w-100 mt-4 text-center" *ngIf="user$ | async as user; else loading">
+    <div class="jumbotron p-5" style="width: 60%;" style=" border-radius: 15px; border:solid 2px #02b875">
+        <h1 class="display-4">Thank you for Registering!</h1>
+        <p class="lead">We have sent a confirmation email to <strong><b>{{user?.email}}</b></strong></p>
+        <hr class="my-4">
+        <p>Please check your email and click on the link to verify it.</p>
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" (click)="onSendEmail()" style="background-color: #02b875; border: #02b875;" href="#" role="button">Resend verification email</a>
+        </p>
+    </div>
+</div>
+
+<ng-template #loading>
+  Loading...
+</ng-template>
