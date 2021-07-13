@@ -97,6 +97,8 @@ export class SvcProductosService {
   )
 }
 
+
+
  private uploadImage(dataSave: ProductosI,empId:string,img: imagenI){
   this.filePath = `images_restaurant/${img.name}`;
   const fileRef = this.storage.ref(this.filePath);

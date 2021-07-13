@@ -11,8 +11,8 @@ const routes: Routes = [
 { path: 'register', loadChildren: () => import('./pages/auth/register/register.module').then(m => m.RegisterModule), canActivate: [CanAdminGuard]},
 { path: 'verification-email', component:SendEmailComponent },
 { path: 'forgot-password', loadChildren: () => import('./pages/auth/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule) },
-{ path: 'carru-cell', loadChildren: () => import('./pages/carrucell/carrucell.module').then(m => m.CarrucellModule) },
 { path: 'categories', loadChildren: () => import('./pages/components/categories/categories.module').then(m => m.CategoriesModule), canActivate: [CanAdminGuard]},
+{ path: 'carru-cell/:id', loadChildren: () => import('./pages/carrucell/carrucell/carrucell.module').then(m => m.CarrucellModule) },
 ];
 
 @NgModule({

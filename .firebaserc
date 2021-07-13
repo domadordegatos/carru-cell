@@ -1,11 +1,5 @@
 {
-  "targets": {
-    "carru-cell": {
-      "hosting": {
-        "carru-cell": [
-          "carru-cell"
-        ]
-      }
-    }
+  "projects": {
+    "default": "carru-cell"
   }
 }

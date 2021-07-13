@@ -1,7 +1,7 @@
 import { RoleValidator } from './helpers/roleValidator';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map, switchMap } from 'rxjs/operators';
 import { userI } from 'src/app/shared/model/user.interface';
 import { Observable, of } from 'rxjs';
@@ -27,9 +27,6 @@ export class AuthSvcService extends RoleValidator {
       })
       );
       
-      /* this.dataUserCollection = afs.collection<userI>('users');
-      this.getDataUser(); */
-      
       this.afAuth.authState.subscribe(dataUser=>{
       if(!dataUser){
         return;
@@ -42,7 +39,11 @@ export class AuthSvcService extends RoleValidator {
  public redireccionarLogin(){
   this.afAuth.authState.subscribe(res => {
     if (res && res.uid) {
+      console.log("iniciaste");
       this.route.navigate(['/new']);
+    }else{
+      console.log("no haz iniciado");
+      
     }
   });
  }
@@ -117,7 +118,7 @@ export class AuthSvcService extends RoleValidator {
       emailVerified: user.emailVerified,
       displayName: user.displayName,
       photoURL: user.photoURL,
-      role: 'BUSINES',
+      role: 'BUSINESS',
     };
 
     return userRef.set(data, {merge: true});
