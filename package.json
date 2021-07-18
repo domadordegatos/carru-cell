@@ -26,9 +26,10 @@
     "bootswatch": "^5.0.2",
     "firebase": "^8.7.1",
     "jquery": "^3.6.0",
+    "ngx-owl-carousel-o": "^6.0.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^11.0.18",
-    "tslib": "^2.2.0",
+    "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

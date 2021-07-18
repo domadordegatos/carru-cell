@@ -14,18 +14,18 @@ import Swal from 'sweetalert2'
   styleUrls: ['./carrucell.component.scss']
 })
 export class CarrucellComponent implements OnInit {
-  name:string;
+  public name:string;
   email:string;
   public categorias$: Observable<categorieI[]>;
   public dataUser$: Observable<userI[]>;
 
-  constructor(private _route:ActivatedRoute, private carruSvc:CarcelSvcService, private authSvc:AuthSvcService, route:Router) { 
+  constructor(private rutas:ActivatedRoute, private carruSvc:CarcelSvcService, private route:Router) { 
     
   }
 
   ngOnInit():void{
     //console.log(this._route.snapshot.paramMap.get('id'));
-    this.name = this._route.snapshot.paramMap.get('id');
+    this.name = this.rutas.snapshot.paramMap.get('id');
     this.validBusiness(this.name);
     this.categorias$ = this.carruSvc.getCategoriesView(this.email);
     this.dataUser$ = this.carruSvc.getDataView(this.email);
@@ -47,7 +47,7 @@ export class CarrucellComponent implements OnInit {
                   }).then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                      
+                      this.route.navigate(['/contact-me'])
                     }
                   })
           break;

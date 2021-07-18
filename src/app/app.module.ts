@@ -18,15 +18,20 @@ import { environment } from 'src/environments/environment';
 import { SendEmailComponent } from './pages/auth/send-email/send-email.component';
 import { AuthSvcService } from './pages/auth/auth-svc.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ContacComponent } from './pages/components/contac/contac.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SendEmailComponent
+    SendEmailComponent,
+    ContacComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HeaderModule,
     FormsModule,
@@ -36,6 +41,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AngularFirestoreModule,
     AngularFireStorageModule,
     ScrollingModule,
+    CarouselModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
   providers: [AuthSvcService,CanAdminGuard,
