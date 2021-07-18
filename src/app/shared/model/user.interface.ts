@@ -7,4 +7,6 @@ export interface userI {
     role?: Roles;
     photoURL?: string;
     emailVerified?: boolean;
+    logo?:string;
+    fondo?:string;
   }

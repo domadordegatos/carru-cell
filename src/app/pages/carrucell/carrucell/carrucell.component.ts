@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { categorieI } from 'src/app/shared/model/categori.interface';
-import { SvcProductosService } from '../../components/product-svc.service';
+import { userI } from 'src/app/shared/model/user.interface';
+import { AuthSvcService } from '../../auth/auth-svc.service';
 import { CarcelSvcService } from '../carcel-svc.service';
+import Swal from 'sweetalert2'
+
 
 @Component({
   selector: 'app-carrucell',
@@ -14,8 +17,9 @@ export class CarrucellComponent implements OnInit {
   name:string;
   email:string;
   public categorias$: Observable<categorieI[]>;
+  public dataUser$: Observable<userI[]>;
 
-  constructor(private _route:ActivatedRoute, private carruSvc:CarcelSvcService) { 
+  constructor(private _route:ActivatedRoute, private carruSvc:CarcelSvcService, private authSvc:AuthSvcService, route:Router) { 
     
   }
 
@@ -24,6 +28,7 @@ export class CarrucellComponent implements OnInit {
     this.name = this._route.snapshot.paramMap.get('id');
     this.validBusiness(this.name);
     this.categorias$ = this.carruSvc.getCategoriesView(this.email);
+    this.dataUser$ = this.carruSvc.getDataView(this.email);
   } 
 
   validBusiness(name){
@@ -33,7 +38,18 @@ export class CarrucellComponent implements OnInit {
       case 'el neyder': this.email = 'neyderflashh@gmail.com';
           break;
       default:
-          console.log("No such day exists!");
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Esta empresa no esta registrada! :(',
+                    showConfirmButton: true,
+                    confirmButtonText: `Pero podria estarlo... LLamanos`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      
+                    }
+                  })
           break;
   }
   }

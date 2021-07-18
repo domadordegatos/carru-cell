@@ -1,1 +1,11 @@
-<p *ngFor="let item of categorias$ | async">{{item.categoria}}</p>
+<div id="body" *ngFor="let item of dataUser$ | async" style="background-image: url('{{item.fondo}}');">
+
+    <div class="box">
+      
+      <img *ngFor="let item of dataUser$ | async" style="margin-bottom: 10%;" width="100%" src="{{item.logo}}" alt="Ups... No tienes imagen">
+
+
+      <a *ngFor="let item of categorias$ | async; index as i" [routerLink]="['/carru-cell','la paula']" class="btn btn-white btn-animation-1 color{{i+1}}">{{item.categoria}}</a> 
+    </div>
+      
+</div>
