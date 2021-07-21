@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Observable } from 'rxjs';
+import { userI } from 'src/app/shared/model/user.interface';
+import Swal from 'sweetalert2';
+import { CarcelSvcService } from '../carcel-svc.service';
 
 @Component({
   selector: 'app-mymenu',
@@ -7,10 +12,41 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
   styleUrls: ['./mymenu.component.scss']
 })
 export class MymenuComponent implements OnInit {
-
-  constructor() { }
+  public dataUser$: Observable<userI[]>;
+  public name:string;
+  public categoria:string;
+  email:string;
+  constructor(private rutas:ActivatedRoute, private carruSvc:CarcelSvcService, private route:Router) { }
 
   ngOnInit(): void {
+    this.name = this.rutas.snapshot.paramMap.get('id');
+    this.categoria = this.rutas.snapshot.paramMap.get('cat');
+    console.log("empresa",this.name,"categoria",this.categoria);
+    this.validBusiness(this.name);
+    this.dataUser$ = this.carruSvc.getDataView(this.email);
+  }
+
+  validBusiness(name){
+    switch (name) {
+      case 'la paula': this.email = 'paulavs1998@gmail.com';
+          break;
+      case 'el neyder': this.email = 'neyderflashh@gmail.com';
+          break;
+      default:
+                  Swal.fire({
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Esta empresa no esta registrada! :(',
+                    showConfirmButton: true,
+                    confirmButtonText: `Pero podria estarlo... LLamanos`,
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      this.route.navigate(['/contact-me'])
+                    }
+                  })
+          break;
+  }
   }
 
   customOptions: OwlOptions = {

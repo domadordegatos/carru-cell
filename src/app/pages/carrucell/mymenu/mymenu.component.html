@@ -1,7 +1,36 @@
-<div>Some tags before</div>
+<link rel="stylesheet" href="https://anandchowdhary.github.io/ionicons-3-cdn/icons.css" integrity="sha384-+iqgM+tGle5wS+uPwXzIjZS5v6VkqCUV7YQ/e/clzRHAxYbzpUJ+nldylmtBWCP0" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<div class="contenedor" style="height: 100vh;" *ngFor="let item of dataUser$ | async" style="background-image: url('{{item.fondo}}'); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-color: #71f8b5;">
+
+<div class="box">
+  <a class="a" [routerLink]="['/carru-cell/',name]">
+    <img *ngFor="let item of dataUser$ | async" style="margin-top: 0.5rem;" width="25%" src="{{item.logo}}" alt="Ups... No tienes imagen">
+  </a>
+</div>
+
 <owl-carousel-o [options]="customOptions">
-  <ng-template carouselSlide><img src="https://firebasestorage.googleapis.com/v0/b/formulario-179af.appspot.com/o/images_restaurant%2Fpie.jpg?alt=media&token=26d52981-5ad4-4833-a3b5-09c4170a20ed"></ng-template>  
-  <ng-template carouselSlide><img src="https://firebasestorage.googleapis.com/v0/b/formulario-179af.appspot.com/o/images_restaurant%2Fpie.jpg?alt=media&token=48460f19-044e-4cb9-a563-f8f11c740447"></ng-template>  
-  <ng-template carouselSlide><img src="https://firebasestorage.googleapis.com/v0/b/carru-cell.appspot.com/o/images_restaurant%2F450_1000.jpg?alt=media&token=99552268-920d-4dc6-ae0d-2165a598e723"></ng-template>  
+  <ng-template carouselSlide >
+    <div class="ft-recipe"> 
+      <div class="ft-recipe__thumb">
+        <img src="https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg" alt="Strawberry Waffle"/>
+      </div>
+      <div class="ft-recipe__content">
+        <header class="content__header">
+          <div class="row-wrapper">
+            <h2 class="recipe-title">Strawberry Waffle</h2>
+            <div class="user-rating"></div>
+          </div>
+          <ul class="recipe-details">
+            <li class="recipe-details-item time"><i class="ion ion-ios-clock-outline"></i><span class="value">20</span><span class="title">Minutes</span></li>
+            <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">5</span><span class="title">Ingredients</span></li>
+            <li class="recipe-details-item servings"><i class="ion ion-ios-person-outline"></i><span class="value">4-6</span><span class="title">Serving</span></li>
+          </ul>
+        </header>
+        <p class="description">
+           There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
+      </div>
+    </div>
+
+  </ng-template>  
 </owl-carousel-o>
-<div>Some tags after</div>
+</div>
