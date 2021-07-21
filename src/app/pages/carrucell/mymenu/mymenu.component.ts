@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Observable } from 'rxjs';
+import { ProductosI } from 'src/app/shared/model/productos.interface';
 import { userI } from 'src/app/shared/model/user.interface';
 import Swal from 'sweetalert2';
 import { CarcelSvcService } from '../carcel-svc.service';
@@ -13,6 +14,7 @@ import { CarcelSvcService } from '../carcel-svc.service';
 })
 export class MymenuComponent implements OnInit {
   public dataUser$: Observable<userI[]>;
+  public platos$: Observable<ProductosI[]>;
   public name:string;
   public categoria:string;
   email:string;
@@ -21,9 +23,9 @@ export class MymenuComponent implements OnInit {
   ngOnInit(): void {
     this.name = this.rutas.snapshot.paramMap.get('id');
     this.categoria = this.rutas.snapshot.paramMap.get('cat');
-    console.log("empresa",this.name,"categoria",this.categoria);
     this.validBusiness(this.name);
     this.dataUser$ = this.carruSvc.getDataView(this.email);
+    this.platos$ = this.carruSvc.getInformationCategorieView(this.email,this.categoria);
   }
 
   validBusiness(name){

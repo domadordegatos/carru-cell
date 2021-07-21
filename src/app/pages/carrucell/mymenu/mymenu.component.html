@@ -4,30 +4,28 @@
 
 <div class="box">
   <a class="a" [routerLink]="['/carru-cell/',name]">
-    <img *ngFor="let item of dataUser$ | async" style="margin-top: 0.5rem;" width="25%" src="{{item.logo}}" alt="Ups... No tienes imagen">
+    <img *ngFor="let item of dataUser$ | async" style="margin-top: 0.5rem;" width="30%" src="{{item.logo}}" alt="Ups... No tienes imagen">
   </a>
 </div>
 
 <owl-carousel-o [options]="customOptions">
-  <ng-template carouselSlide >
-    <div class="ft-recipe"> 
+  <ng-template carouselSlide>
+    <div class="ft-recipe" *ngFor="let item of platos$ | async"> 
       <div class="ft-recipe__thumb">
-        <img src="https://zippypaws.com/app/uploads/2018/05/strawberry-waffles-1024x668.jpg" alt="Strawberry Waffle"/>
+        <img src="{{item.img}}" alt="Ups disculpanos. esta publicacion no tiene foto"/>
       </div>
       <div class="ft-recipe__content">
         <header class="content__header">
           <div class="row-wrapper">
-            <h2 class="recipe-title">Strawberry Waffle</h2>
+            <h2 class="recipe-title">{{item.nombre}}</h2>
             <div class="user-rating"></div>
           </div>
           <ul class="recipe-details">
-            <li class="recipe-details-item time"><i class="ion ion-ios-clock-outline"></i><span class="value">20</span><span class="title">Minutes</span></li>
-            <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">5</span><span class="title">Ingredients</span></li>
-            <li class="recipe-details-item servings"><i class="ion ion-ios-person-outline"></i><span class="value">4-6</span><span class="title">Serving</span></li>
+            <li class="recipe-details-item time"><i class="ion ion-logo-usd"></i><span class="value">{{item.precio}}</span><span class="title">Valor</span></li>
+            <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">{{item.categoria}}</span><span class="title">Ceategoría</span></li>
           </ul>
         </header>
-        <p class="description">
-           There’s no better way to celebrate May being National Strawberry Month than by sharing a sweet treat with your pup!!! Strawberries...</p>
+        <p class="description">{{item.descripcion}}</p>
       </div>
     </div>
 

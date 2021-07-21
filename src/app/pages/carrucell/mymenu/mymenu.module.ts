@@ -12,7 +12,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
   imports: [
     CommonModule,
     MymenuRoutingModule,
-    CarouselModule 
+    CarouselModule
   ]
 })
 export class MymenuModule { }
