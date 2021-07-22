@@ -21,9 +21,8 @@ export class SvcProductosService {
   public viewUser:any = this.afAuth.usuario;
 
   constructor(public afAuth:AuthSvcService ,private readonly afs: AngularFirestore, private storage: AngularFireStorage) {
-    /* this.productosCollection = afs.collection<ProductosI>('productos', ref=> ref.orderBy('date','desc')); */
-    this.productosCollection = afs.collection<ProductosI>('productos', p=> p.where('email','==',this.viewUser.email));
-    this.categoriesCollection = afs.collection<categorieI>('categorias', p=> p.where('email','==',this.viewUser.email));
+    this.productosCollection = afs.collection<ProductosI>('productos', p=> p.where('email','==',this.viewUser.email).orderBy('date','desc'));
+    this.categoriesCollection = afs.collection<categorieI>('categorias', p=> p.where('email','==',this.viewUser.email).orderBy('date','desc'));
     this.getProductos();
     this.getCategories();
    }

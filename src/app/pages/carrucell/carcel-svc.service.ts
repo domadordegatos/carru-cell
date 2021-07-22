@@ -19,7 +19,7 @@ export class CarcelSvcService {
 
   public getCategoriesView(email:string): Observable<categorieI[]>{
           
-    this.categoriesViewCollection = this.afs.collection<categorieI>('categorias', p=> p.where('email','==',email));
+    this.categoriesViewCollection = this.afs.collection<categorieI>('categorias', p=> p.where('email','==',email).orderBy('categoria','asc'));
   
     return this.categoriesViewCollection
       .snapshotChanges()

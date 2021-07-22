@@ -9,8 +9,8 @@
 </div>
 
 <owl-carousel-o [options]="customOptions">
-  <ng-template carouselSlide>
-    <div class="ft-recipe" *ngFor="let item of platos$ | async"> 
+  <ng-template carouselSlide *ngFor="let item of platos$ | async">
+    <div class="ft-recipe" > 
       <div class="ft-recipe__thumb">
         <img src="{{item.img}}" alt="Ups disculpanos. esta publicacion no tiene foto"/>
       </div>
@@ -25,7 +25,7 @@
             <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">{{item.categoria}}</span><span class="title">Ceategoría</span></li>
           </ul>
         </header>
-        <p class="description">{{item.descripcion}}</p>
+        <p class="description" style="font-family: 'Jost', sans-serif;">{{item.descripcion}}</p>
       </div>
     </div>
 
