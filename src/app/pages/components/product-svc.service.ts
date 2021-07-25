@@ -64,18 +64,32 @@ export class SvcProductosService {
   })
  }
 
- public preAddAndUpdatePost(producto:ProductosI,empId:string,image: imagenI):void{
-  this.uploadImage(producto,empId,image);
-  
+ public preAddAndUpdatePost(producto:ProductosI,empId:string,image: imagenI,state:string):void{
+  this.uploadImage(producto,empId,image,state);
 }
 
- onSaveProductos(producto:ProductosI,empId:string,img:string):Promise<void>{
+  activateProduct(producto:ProductosI,empId:string,img:string,state:string):Promise<void>{
+    return new Promise( async (resolve, reject) => {
+      try{
+        const date = new Date().getTime();
+        const email = this.viewUser.email;
+        const id = empId || this.afs.createId();
+        const data = {id,img,date,email,state, ...producto};
+        const result = await this.productosCollection.doc(id).set(data);
+        resolve(result);  
+      }catch(err){
+         reject(err.message);
+      }
+    })
+  }
+
+ onSaveProductos(producto:ProductosI,empId:string,img:string,state:string):Promise<void>{
    return new Promise( async (resolve, reject) => {
      try{
        const date = new Date().getTime();
        const email = this.viewUser.email;
        const id = empId || this.afs.createId();
-       const data = {id,img,date,email, ...producto};
+       const data = {id,img,date,email,state, ...producto};
        const result = await this.productosCollection.doc(id).set(data);
        resolve(result);  
      }catch(err){
@@ -98,7 +112,7 @@ export class SvcProductosService {
 
 
 
- private uploadImage(dataSave: ProductosI,empId:string,img: imagenI){
+ private uploadImage(dataSave: ProductosI,empId:string,img: imagenI,state:string){
   this.filePath = `images_restaurant/${img.name}`;
   const fileRef = this.storage.ref(this.filePath);
   const task = this.storage.upload(this.filePath, img);
@@ -109,7 +123,7 @@ export class SvcProductosService {
         this.downloadURL = urlImage;
         /* console.log(urlImage);
         console.log('post', dataSave); */
-        this.onSaveProductos(dataSave,empId,urlImage);
+        this.onSaveProductos(dataSave,empId,urlImage,state);
       })
     })
   ).subscribe();

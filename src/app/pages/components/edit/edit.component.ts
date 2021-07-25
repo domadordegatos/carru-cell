@@ -20,13 +20,28 @@ export class EditComponent implements OnInit {
   urlimg:string;
   public new_img:number = 0;
   imageSrc: any;
-  public idSelect:string;
+  public idSelect:string; public stateValue:number;
 
   constructor(private afAuth:AuthSvcService ,private fb: FormBuilder,private router:Router, private productosSvc:SvcProductosService) { 
     const navigation =  this.router.getCurrentNavigation();
     this.productos = navigation?.extras?.state?.value;
     this.image = this.productos.img;
     this.initForm();
+  }
+
+  activateProcess(state:string):void{
+    // console.log("estado",state);
+    // console.log('saved', this.productosForm.value);
+    if(this.productosForm.valid){
+      const productos = this.productosForm.value;
+      const productoId = this.productos?.id || null;
+      if(this.new_img == 0){
+        this.productosSvc.activateProduct(productos,productoId,this.image,state);
+        this.initForm();
+        this.messageExito();
+        this.router.navigate(['new']);
+      }
+    }
   }
 
   onSelect(e:any){
@@ -61,16 +76,18 @@ export class EditComponent implements OnInit {
   }
 
   onSave():void{
-    console.log('saved', this.productosForm.value);
+    var stateHtml = ((document.getElementById("state") as HTMLInputElement).value);
+    // console.log("dato",num1);
+    // console.log('saved', this.productosForm.value);
     if(this.productosForm.valid){
       const productos = this.productosForm.value;
       const productoId = this.productos?.id || null;
       if(this.new_img == 0){
-        this.productosSvc.onSaveProductos(productos,productoId,this.image);
+        this.productosSvc.onSaveProductos(productos,productoId,this.image,stateHtml);
         this.messageExito();
         this.router.navigate(['new']);
       }else{
-        this.productosSvc.preAddAndUpdatePost(productos,productoId,this.image);
+        this.productosSvc.preAddAndUpdatePost(productos,productoId,this.image,stateHtml);
         this.messageExito();
         this.router.navigate(['new']);
       }

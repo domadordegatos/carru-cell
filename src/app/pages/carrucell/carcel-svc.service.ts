@@ -36,7 +36,7 @@ export class CarcelSvcService {
 
   public getInformationCategorieView(email:string,cateogia:string): Observable<ProductosI[]>{
           
-    this.categoriesViewCollection = this.afs.collection<ProductosI>('productos', p=> p.where('email','==',email).where('categoria','==',cateogia));
+    this.categoriesViewCollection = this.afs.collection<ProductosI>('productos', p=> p.where('email','==',email).where('state','==','1').where('categoria','==',cateogia));
   
     return this.categoriesViewCollection
       .snapshotChanges()

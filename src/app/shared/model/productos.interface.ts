@@ -7,4 +7,5 @@ export interface ProductosI {
     img?:string;
     nombre:string;
     precio:string;
+    state?:string;
   }

@@ -36,7 +36,7 @@ export class NewComponent implements OnInit {
   }
 
   onSelect(e:any){
-    console.log("hola",e.target.value);
+    // console.log("hola",e.target.value);
     this.idSelect = e.target.value;
     document.getElementsByName('categoria')[0]['value'] = this.idSelect;
   }
@@ -70,7 +70,7 @@ export class NewComponent implements OnInit {
             icon: 'success',
             title: 'Eliminado!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 700
           })
         }catch(err){
           console.log(err);
@@ -94,7 +94,7 @@ export class NewComponent implements OnInit {
     if(this.productosForm.valid){
       const employee = this.productosForm.value;
       const employeeId = this.productos?.id || null;
-      this.productosSvc.preAddAndUpdatePost(employee,employeeId,this.image);
+      this.productosSvc.preAddAndUpdatePost(employee,employeeId,this.image,'1');
       Swal.fire({
         position: 'center',
         icon: 'success',

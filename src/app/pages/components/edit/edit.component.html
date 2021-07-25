@@ -37,19 +37,28 @@
               </div>
               <div class="form-group row">
                 <label for="staticEmail" class="col-md-4 col-form-label">Descripción</label>
-                 <div class="col-sm-11"> 
-                  <input type="text" class="form-control mt-1" formControlName="descripcion" [class]="isValidField('descripcion')">
+                 <div class="col-sm-11">
+                   <textarea class="form-control" rows="4" formControlName="descripcion" [class]="isValidField('descripcion')">{{productos.descripcion}}</textarea>
+                  <!-- <input type="text" class="form-control mt-1" formControlName="descripcion" [class]="isValidField('descripcion')"> -->
                  </div>
               </div>
+
+              <input type="text" id="state" hidden name="state" [value]="productos.state">
+
               <div class="form-group row">
                 <label for="staticEmail" class="col-md-4 col-form-label">Imagen</label>
                  <div class="col-sm-11"> 
                   <input type="file" class="form-control mt-1" (change)="handleImage($event)">
                  </div>
               </div>
+              <div class="d-grid gap-1 col-11">
+                <!-- <button class="btn btn-dark mt-3" (click)="activateProcess('0')"><i class="bi bi-lightbulb-off"></i></button> -->
+                <button *ngIf="productos.state == '1'" class="btn btn-primary mt-3" type="button" (click)="activateProcess('0')"><i class="bi bi-lightbulb"></i></button>
+                <button *ngIf="productos.state == '0'" class="btn btn-danger mt-3" type="button" (click)="activateProcess('1')"><i class="bi bi-lightbulb-off"></i></button>
+              </div>
               <!-- <input type="" formControlName="email"> -->
             <div class="d-grid gap-1 col-11">
-                <button class="btn btn-success mt-5" type="submit">Listo!</button>
+                <button class="btn btn-success mt-1" type="submit">Listo!</button>
             </div>
         </form>
     </div>
