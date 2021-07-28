@@ -1,5 +1,4 @@
 <div id="body" *ngFor="let item of dataUser$ | async" style="background-image: url('{{item.fondo}}'); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-color: #71f8b5;">
-
     <div class="box">
       
       <img *ngFor="let item of dataUser$ | async" style="margin-bottom: 10%;" width="100%" src="{{item.logo}}" alt="Ups... No tienes imagen">

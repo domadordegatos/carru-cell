@@ -1,7 +1,7 @@
 import { RoleValidator } from './helpers/roleValidator';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { map, switchMap } from 'rxjs/operators';
 import { userI } from 'src/app/shared/model/user.interface';
 import { Observable, of } from 'rxjs';

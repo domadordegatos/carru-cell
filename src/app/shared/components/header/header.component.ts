@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Router, NavigationExtras } from '@angular/router';
 import { Component } from '@angular/core';
 import { AuthSvcService } from 'src/app/pages/auth/auth-svc.service';
+import { CarcelSvcService } from 'src/app/pages/carrucell/carcel-svc.service';
 
 @Component({
   selector: 'app-header',
@@ -12,10 +13,12 @@ import { AuthSvcService } from 'src/app/pages/auth/auth-svc.service';
 })
 export class HeaderComponent{
   public user$: Observable<userI> = this.authSvc.afAuth.user;
-  public viewUser:any = this.afAuth.usuario;
+  public viewUser:any = this.afAuth.dataUser;
+  public dataUser$: Observable<userI[]>;
+  public dataInformation$: Observable<userI[]>;
 
-  constructor(public afAuth:AuthSvcService ,public authSvc: AuthSvcService, private route:Router) {
-    /* console.log("todo",this.viewUser); */
+  constructor(public afAuth:AuthSvcService ,public authSvc: AuthSvcService, private route:Router,private carruSvc:CarcelSvcService) {
+    // this.dataInformation$ = this.carruSvc.informationUser();
   }
 
   async onLogout(){

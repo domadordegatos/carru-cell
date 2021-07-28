@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { categorieI } from 'src/app/shared/model/categori.interface';
 import { ProductosI } from 'src/app/shared/model/productos.interface';
 import { userI } from 'src/app/shared/model/user.interface';
+import { AuthSvcService } from '../auth/auth-svc.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ import { userI } from 'src/app/shared/model/user.interface';
 export class CarcelSvcService {
   private categoriesViewCollection: AngularFirestoreCollection<categorieI>;
   private dataViewCollection: AngularFirestoreCollection<userI>;
+  private informationCollection: AngularFirestoreCollection<userI>;
+  public viewUser:any = this.afAuth.usuario;
 
-  constructor(private readonly afs: AngularFirestore) { }
+  constructor(private readonly afs: AngularFirestore, private afAuth:AuthSvcService) { }
 
   
 
@@ -54,8 +57,27 @@ export class CarcelSvcService {
   public getDataView(email:string): Observable<userI[]>{
           
     this.dataViewCollection = this.afs.collection<userI>('users', p=> p.where('email','==',email));
-  
+    
     return this.dataViewCollection
+      .snapshotChanges()
+      .pipe(
+        map(actions =>
+          actions.map(a => {
+            const data = a.payload.doc.data() as userI;
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          })
+        )
+      );
+  }
+
+  public informationUser(): Observable<userI[]>{
+    const email = this.viewUser.uid;
+    console.log("holaaaaaaaaaaaaa",email);
+    
+    this.informationCollection = this.afs.collection<userI>('users', p=> p.where('uid','==',email));
+    
+    return this.informationCollection
       .snapshotChanges()
       .pipe(
         map(actions =>
