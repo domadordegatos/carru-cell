@@ -63,7 +63,7 @@
 
         <div class="tarjeta d-flex w-100 mb-2 shadow" style="border-radius: 15px; height: auto;" *cdkVirtualFor="let item of productosList$ | async">
           <div class="parte1 w-25">
-            <img style="border-bottom-left-radius: 15px; border-top-left-radius: 15px;" src="{{item.img}}" width="100%" height="100%" alt="">
+            <img style="border-bottom-left-radius: 15px; border-top-left-radius: 15px; image-rendering: pixelated;" src="{{item.img}}" width="100%" height="100%" alt="">
           </div>
           <div class="parte2 w-50" style="margin-left: 1rem;">
             <h6 class="mt-2 mb-0">{{item.nombre}}</h6>

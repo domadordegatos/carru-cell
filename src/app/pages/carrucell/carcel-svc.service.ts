@@ -55,7 +55,7 @@ export class CarcelSvcService {
   }
 
   public getDataView(email:string): Observable<userI[]>{
-          
+
     this.dataViewCollection = this.afs.collection<userI>('users', p=> p.where('email','==',email));
     
     return this.dataViewCollection
@@ -70,23 +70,5 @@ export class CarcelSvcService {
         )
       );
   }
-
-  public informationUser(): Observable<userI[]>{
-    const email = this.viewUser.uid;
-    console.log("holaaaaaaaaaaaaa",email);
-    
-    this.informationCollection = this.afs.collection<userI>('users', p=> p.where('uid','==',email));
-    
-    return this.informationCollection
-      .snapshotChanges()
-      .pipe(
-        map(actions =>
-          actions.map(a => {
-            const data = a.payload.doc.data() as userI;
-            const id = a.payload.doc.id;
-            return { id, ...data };
-          })
-        )
-      );
-  }
+  
 }

@@ -14,11 +14,8 @@ import { CarcelSvcService } from 'src/app/pages/carrucell/carcel-svc.service';
 export class HeaderComponent{
   public user$: Observable<userI> = this.authSvc.afAuth.user;
   public viewUser:any = this.afAuth.dataUser;
-  public dataUser$: Observable<userI[]>;
-  public dataInformation$: Observable<userI[]>;
 
   constructor(public afAuth:AuthSvcService ,public authSvc: AuthSvcService, private route:Router,private carruSvc:CarcelSvcService) {
-    // this.dataInformation$ = this.carruSvc.informationUser();
   }
 
   async onLogout(){
@@ -28,6 +25,10 @@ export class HeaderComponent{
     }catch(err){
       console.log("err vista",err);
     }
+  }
+
+  correo(email:string){
+    console.log("correo",email);
   }
 
 }

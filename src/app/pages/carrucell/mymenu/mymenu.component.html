@@ -12,7 +12,7 @@
   <ng-template carouselSlide *ngFor="let item of platos$ | async">
     <div class="ft-recipe" > 
       <div class="ft-recipe__thumb">
-        <img src="{{item.img}}" alt="Ups disculpanos. esta publicacion no tiene foto"/>
+        <img style=" image-rendering: pixelated;" src="{{item.img}}" alt="Ups disculpanos. esta publicacion no tiene foto"/>
       </div>
       <div class="ft-recipe__content">
         <header class="content__header">
@@ -22,7 +22,13 @@
           </div>
           <ul class="recipe-details">
             <li class="recipe-details-item time"><i class="ion ion-logo-usd"></i><span class="value">{{item.precio}}</span><span class="title">Valor</span></li>
-            <li class="recipe-details-item ingredients"><i class="ion ion-ios-book-outline"></i><span class="value">{{item.categoria}}</span><span class="title">Ceategoría</span></li>
+            <li class="recipe-details-item ingredients">
+              <svg style="vertical-align: baseline;" width="25" height="25" fill="currentColor" class="bi bi-journal-bookmark-fill" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M6 1h6v7a.5.5 0 0 1-.757.429L9 7.083 6.757 8.43A.5.5 0 0 1 6 8V1z"/>
+                <path d="M3 0h10a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-1h1v1a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v1H1V2a2 2 0 0 1 2-2z"/>
+                <path d="M1 5v-.5a.5.5 0 0 1 1 0V5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0V8h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1zm0 3v-.5a.5.5 0 0 1 1 0v.5h.5a.5.5 0 0 1 0 1h-2a.5.5 0 0 1 0-1H1z"/>
+              </svg>
+              <span class="value">{{item.categoria}}</span><span class="title">Categoría</span></li>
           </ul>
         </header>
         <p class="description" style="font-family: 'Jost', sans-serif;">{{item.descripcion}}</p>
