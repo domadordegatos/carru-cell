@@ -58,7 +58,7 @@ export class MymenuComponent implements OnInit {
     pullDrag: true,
     dots: false, //botones
     navSpeed: 700,
-    navText: ['', ''],
+    navText: ['',''],
     responsive: {
         0: { items: 1},
       400: { items: 1},

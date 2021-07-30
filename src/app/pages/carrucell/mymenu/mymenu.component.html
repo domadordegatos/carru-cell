@@ -9,7 +9,7 @@
 </div>
 
 <owl-carousel-o [options]="customOptions">
-  <ng-template carouselSlide *ngFor="let item of platos$ | async">
+  <ng-template class="box" carouselSlide *ngFor="let item of platos$ | async">
     <div class="ft-recipe" > 
       <div class="ft-recipe__thumb">
         <img style=" image-rendering: pixelated;" src="{{item.img}}" alt="Ups disculpanos. esta publicacion no tiene foto"/>
@@ -37,4 +37,5 @@
 
   </ng-template>  
 </owl-carousel-o>
+
 </div>
